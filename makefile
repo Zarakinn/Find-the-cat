@@ -12,7 +12,7 @@ O = obj/
 B = bin/
 
 ftc: main.o
-	$(COMPIL) -o $(B)ftc main.o && $(MOV)
+	$(COMPIL) -o ftc main.o && $(MOV)
 	
 main.o:
 	$(COMPIL) -c $(S)main.c
