@@ -1,7 +1,9 @@
-#include <stdio.h>
+#include "explorer.h"
 
 int main(int argc, char const *argv[])
 {
-    printf("Test\n");
+ 
+    printDirectory(".");
+
     return 0;
 }
