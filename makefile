@@ -11,11 +11,14 @@ O = obj/
 # Dossier exécutable
 B = bin/
 
-ftc: main.o
-	$(COMPIL) -o ftc main.o && $(MOV)
+ftc: main.o explorer.o
+	$(COMPIL) -o ftc main.o explorer.o && $(MOV)
 	
 main.o:
 	$(COMPIL) -c $(S)main.c
+
+explorer.o:
+	$(COMPIL) -c $(S)explorer.c
 	
 # Nettoyage
 clean:
