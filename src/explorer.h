@@ -3,6 +3,7 @@
 #include <stdlib.h> 
 #include <string.h>
 #include <sys/stat.h>
+#include <stdbool.h>
 
 #define currentDir "."
 #define parentDir ".."
