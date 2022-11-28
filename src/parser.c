@@ -1,15 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-struct ss{
-    char name;
-    char type;
-    int size;
-} typedef Parametre;
-
-char* a;
-int b;
+#include "parameterStruct.h"
 
 int main() {
 
@@ -18,13 +10,16 @@ int main() {
     // Séparateurs connus.
     const char * separators = " [],.!";
 
+    parameter* param = (parameter*)malloc(sizeof(parameter));
+
+
     // On récupère, un à un, tous les mots de la commande et on test le flag test
     char * strToken = strtok ( str, separators );
     while ( strToken != NULL ) {
         if (strcmp(strToken,"-test") ==0)
             printf("La valeur du flag -test est %s\n" ,strToken );
             //printf( "%s\n", &strToken[4]);
-            if (sizeof(&strToken[4])==sizeof(b))
+            if (sizeof(&strToken[4])==sizeof(int))
                 printf("ok\n");
         
     
