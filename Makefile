@@ -38,5 +38,5 @@ clean:
 	rm -rf ./*.o
 	rm -rf ./obj/*.o
 	rm ftc
-	rm parser
+	rm -f parser
 

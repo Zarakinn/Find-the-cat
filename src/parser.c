@@ -1,22 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-<<<<<<< HEAD
-
-struct ss{
-    char name;
-    char type;
-    int size;
-} typedef Parametre;
+#include "parameterStruct.h"
 
 char* a;
 int* b;
 char c[]={'-','s','i','d'};
 char multiples[] = {'k','M','G'};
-=======
-#include "parameterStruct.h"
 
->>>>>>> a519f72261184990ff3e0c138ded2bc4606b92ae
 int main() {
 
     
@@ -35,7 +26,6 @@ int main() {
 
         if (strcmp(strToken,"-test") ==0){
             printf("La valeur du flag -test est %s\n" ,strToken );
-<<<<<<< HEAD
             }
 
 
@@ -53,14 +43,6 @@ int main() {
         }
 
 
-=======
-            //printf( "%s\n", &strToken[4]);
-            if (sizeof(&strToken[4])==sizeof(int))
-                printf("ok\n");
-        
->>>>>>> a519f72261184990ff3e0c138ded2bc4606b92ae
-    
-
         if (sizeof(strToken[0])==sizeof(b)){
                 printf("C'est un int\n");
             }
@@ -74,10 +56,6 @@ int main() {
         // } 
         
 
-
-
-
-        
         //token suivant.
         strToken = strtok ( NULL, separators );
     }
