@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+<<<<<<< HEAD
 
 struct ss{
     char name;
@@ -12,12 +13,19 @@ char* a;
 int* b;
 char c[]={'-','s','i','d'};
 char multiples[] = {'k','M','G'};
+=======
+#include "parameterStruct.h"
+
+>>>>>>> a519f72261184990ff3e0c138ded2bc4606b92ae
 int main() {
 
     
     char str[] = "ftc starting-point -size 9k -date .";
     // Séparateurs connus.
     const char * separators = " [],.!";
+
+    parameter* param = (parameter*)malloc(sizeof(parameter));
+
 
     // On récupère, un à un, tous les mots de la commande et on test le flag test
     char * strToken = strtok ( str, separators );
@@ -27,6 +35,7 @@ int main() {
 
         if (strcmp(strToken,"-test") ==0){
             printf("La valeur du flag -test est %s\n" ,strToken );
+<<<<<<< HEAD
             }
 
 
@@ -44,6 +53,12 @@ int main() {
         }
 
 
+=======
+            //printf( "%s\n", &strToken[4]);
+            if (sizeof(&strToken[4])==sizeof(int))
+                printf("ok\n");
+        
+>>>>>>> a519f72261184990ff3e0c138ded2bc4606b92ae
     
 
         if (sizeof(strToken[0])==sizeof(b)){

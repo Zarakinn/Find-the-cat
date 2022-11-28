@@ -12,7 +12,7 @@ DIR* loadDir(const char* filename){
     return dir;
 }
 
-void printDirectory(const char* path)
+void printDirectory(const char* path,parameter* param)
 {
 
     DIR* dir = loadDir(path);
@@ -33,16 +33,14 @@ void printDirectory(const char* path)
 
         stat(filename,&statBuffer);
 
-        if (!matchCondition(file,statBuffer,0))
-            continue;
-
-        printf("%s\n", filename);
-        
-
         if (S_ISDIR(statBuffer.st_mode)) 
         {   
-            printDirectory(filename);
+            printDirectory(filename, param);
         }
+
+        if (!matchCondition(file,statBuffer,param))
+            continue;
+        printf("%s\n", filename);
     }
 
     closedir(dir);
