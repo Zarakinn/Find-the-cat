@@ -1,5 +1,6 @@
 #include "explorer.h"
-
+#include <Windows.h>
+#include <fileapi.h>
 DIR* loadDir(const char* filename){
     DIR* dir = opendir(filename);
 
