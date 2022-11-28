@@ -1,5 +1,5 @@
 CC = clang
-FLAGS = -Wall -Wextra -pedantic -O0 -g3 -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
+FLAGS = -Wall -Wextra -pedantic -O0 -g3 -fno-omit-frame-pointer -fno-optimize-sibling-calls
 COMPIL = $(CC) $(FLAGS)
 
 MOV = mv *.o obj/
