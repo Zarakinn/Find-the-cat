@@ -1,6 +1,6 @@
 #include "explorer.h"
-#include <Windows.h>
-#include <fileapi.h>
+#include "checker.h"
+
 DIR* loadDir(const char* filename){
     DIR* dir = opendir(filename);
 
@@ -25,6 +25,7 @@ void printDirectory(const char* path)
         if (!strcmp(file->d_name,currentDir) || !strcmp(file->d_name, parentDir))
             continue;
         
+        //Filename format
         char filename[strlen(path) + strlen(file->d_name)+ 10];
         strcpy(filename,path);
         strcat(filename,"/");
@@ -32,7 +33,12 @@ void printDirectory(const char* path)
 
         stat(filename,&statBuffer);
 
+        if (!matchCondition(file,statBuffer,0))
+            continue;
+
         printf("%s\n", filename);
+        
+
         if (S_ISDIR(statBuffer.st_mode)) 
         {   
             printDirectory(filename);

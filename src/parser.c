@@ -14,7 +14,7 @@ int b;
 int main() {
 
     
-    char str[] = "ftc starting-point [-test [parametre]] .";
+    char str[] = "ftc starting-point [-test [paramtest]] .";
     // Séparateurs connus.
     const char * separators = " [],.!";
 
