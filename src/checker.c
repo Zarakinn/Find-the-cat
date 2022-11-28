@@ -8,14 +8,8 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
     {
         return false;
     }
-<<<<<<< HEAD
-
-    printf("Taille du fichier = %ld\n",(long)statBuffer.st_size);
-    if (statBuffer.st_size < 500)
-=======
     //printf("Taille du fichier = %ld\n",(long)statBuffer.st_size);
     if (param->size != NULL && statBuffer.st_size < param->size)
->>>>>>> a519f72261184990ff3e0c138ded2bc4606b92ae
     {
         switch (param->sizeModifier)
         {
@@ -42,21 +36,11 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
     {
         time_t t = time(NULL); // A déplacer car tout le temps le même
 
-<<<<<<< HEAD
-    time_t t = time(NULL); // A déplacer car tout le temps le même
-
-    printf("Date dernier accès : %s\n",ctime(&statBuffer.st_atime));
-    printf("Date actuelle : %s\n", ctime(&t));
-
-    double timeSinceLastAccess = (double)difftime(t,statBuffer.st_atime);
-    printf("Différence : %f\n",timeSinceLastAccess);
-=======
         //printf("Date dernier accès : %s\n",ctime(&statBuffer.st_atime));
         //printf("Date actuelle : %s\n", ctime(&t));
 
         double timeSinceLastAccess = (double)difftime(t,statBuffer.st_atime);
         //printf("Différence : %f\n",timeSinceLastAccess);
->>>>>>> a519f72261184990ff3e0c138ded2bc4606b92ae
 
         switch (param->timeModifier)
         {
