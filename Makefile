@@ -11,8 +11,8 @@ O = obj/
 # Dossier exécutable
 B = bin/
 
-ftc: main.o explorer.o checker.o
-	$(COMPIL) -o ftc main.o explorer.o checker.o && $(MOV)
+ftc: main.o explorer.o checker.o util.o
+	$(COMPIL) -o ftc main.o explorer.o checker.o util.o && $(MOV)
 
 parser: parser.o
 	$(COMPIL) -o parser parser.o && $(MOV)
@@ -28,6 +28,9 @@ explorer.o: checker.o
 
 checker.o:
 	$(COMPIL) -c $(S)checker.c
+
+util.o:
+	$(COMPIL) -c $(S)util.c
 	
 # Nettoyage
 clean:
@@ -35,5 +38,5 @@ clean:
 	rm -rf ./*.o
 	rm -rf ./obj/*.o
 	rm ftc
-	rm parser
+	rm -f parser
 

@@ -1,18 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-struct ss{
-    char name;
-    char type;
-    int size;
-} typedef Parametre;
+#include "parameterStruct.h"
 
 char* a;
 int* b;
 char c[]={'-','s','i','d'};
 char multiples[] = {'k','M','G'};
-#include "parameterStruct.h"
 
 int main() {
 
@@ -49,8 +43,6 @@ int main() {
         }
 
 
-    
-
         if (sizeof(strToken[0])==sizeof(b)){
                 printf("C'est un int\n");
             }
@@ -64,10 +56,6 @@ int main() {
         // } 
         
 
-
-
-
-        
         //token suivant.
         strToken = strtok ( NULL, separators );
     }
