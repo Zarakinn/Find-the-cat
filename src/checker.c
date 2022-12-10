@@ -36,7 +36,7 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
     {
         time_t t = time(NULL); // A déplacer car tout le temps le même
 
-        //printf("Date dernier accès : %s\n",ctime(&statBuffer.st_atime));
+        printf("Date dernier accès : %s\n",ctime(&statBuffer.st_atime));
         //printf("Date actuelle : %s\n", ctime(&t));
 
         double timeSinceLastAccess = (double)difftime(t,statBuffer.st_atime);

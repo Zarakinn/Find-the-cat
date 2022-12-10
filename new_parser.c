@@ -17,6 +17,9 @@ int* b;
 char multiples[] = {'c','k','M','G'};
 int multiples2[] = {1,1024,1024*1024,1024*1024*1024};
 
+char multiples_date[] = {'m','h','j',};
+int multiples_date2[] = {60,60*60,24*60*60};
+
 
 long int findSize(char* file_name)
 {
@@ -186,8 +189,8 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
 
 
 
-
-
+bool argname = false;
+bool argdate = false;
 bool argsize = false;
 
 
@@ -196,13 +199,51 @@ int main(int argc, char *argv[]) {
     for(int i = 1; i < argc; i++){
         char* val = argv[i];
         if(argv[i][0]=='-'){ // on a reonnu un paramètre
-            if(strcmp(argv[i],"-name")==0){
+            if(strcmp(argv[i],"-name")==0 && !argname){
                 printf("ok, on est là : %s\n",argv[1]);
             }
-            if(strcmp(argv[i],"-date")==0){
+            if(strcmp(argv[i],"-date")==0 && !argdate){
                 printf("ok, on est là : %s\n",argv[i]);
-                printf("Temps en sec : %f\n", timeInSecond(argv[i+1]));
-                // printf("Temps en sec : %f\n", timeInSecond("5m"));
+                if (i+1 <= argc ){
+                    printf("%s\n",argv[i+1]);
+                    char format = argv[i+1][strlen(argv[i+1])-1];
+                    printf("%c\n",format);
+
+                    char format_date;
+                    int multiple_date;
+                    
+                    bool stop_date = false;
+                    
+                    for(long int j = 0; j < sizeof(multiples_date) && !stop_date && !argdate; j++){
+                        //printf("on est dans la boucle %ld\n",j);
+                        if(format == multiples_date[j]){
+                            format_date = multiples_date[j];
+                            multiple_date = multiples_date2[j];
+                            
+                            stop_date=true;
+                        }// j'ai crée 2 tableaux pour les formats de date et les multiples de date
+
+                        if(format != 'm' && format != 'h' && format != 'j' ){
+                            printf("Le format de date n'est pas valide\n");
+                            return(0);
+                        }
+                        
+                    }
+
+                    printf("La boucle des dates est terminée\n");
+
+                    if(stop_date){
+                        printf("Le format de date est valide\n");
+                        printf("Le format de date est : %c\n",format_date);
+                        printf("Le multiple de date est : %d\n",multiple_date);
+
+                        printf("Temps en sec : %f\n", timeInSecond(argv[i+1]));
+                    }
+                    argdate = true;
+
+                    
+                }
+            
             }
             if(strcmp(argv[i],"-size")==0 && !argsize){
                 printf("ok, on est là : %s\n",argv[i]);
@@ -212,15 +253,15 @@ int main(int argc, char *argv[]) {
                 // printf("Size of the file is %ld bytes \n", res);
                 
                 if (i+1 <= argc && !argsize){
-                    printf("%s\n",argv[i+1]);
+                    //printf("%s\n",argv[i+1]);
                     char taille = argv[i+1][strlen(argv[i+1])-1];
-                    printf("%c\n",taille);
+                    //printf("%c\n",taille);
                     char taille_officielle;
                     int multiple_officiel;
                     //vérifie que la taille fait bien partie des tailles multiples
                     bool stop = false;
                     for(long int j = 0; j < sizeof(multiples) && !stop && !argsize; j++){
-                        printf("on est dans la boucle %ld\n",j);
+                        //printf("on est dans la boucle %ld\n",j);
                         if(taille == multiples[j]){
                             taille_officielle = multiples[j];
                             multiple_officiel = multiples2[j];
@@ -239,8 +280,8 @@ int main(int argc, char *argv[]) {
                     //printf("%c\n",taille_officielle);
                     if(stop){
                         printf("on a trouvé la taille\n");
-                        printf("symbole de taille : %c\n",taille_officielle);
-                        printf("valeur en multiple : %d\n",multiple_officiel);
+                        //printf("symbole de taille : %c\n",taille_officielle);
+                        //printf("valeur en multiple : %d\n",multiple_officiel);
                         //on a trouvé la taille, on peut maintenant comparer la taille du fichier à la taille donnée
                         long int res = findSize(file_name);
                         printf("Size of the file is %ld bytes \n", res);
