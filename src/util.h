@@ -6,9 +6,9 @@
 #define util
 
 // Coefficient de temps
-#define m 3600;
-#define h 60;
-#define j 24;
+#define min 3600;
+#define heure 60;
+#define jour 24;
 
 // Coefficient de taille
 #define c 1;

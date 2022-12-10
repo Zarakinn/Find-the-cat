@@ -11,11 +11,11 @@ O = obj/
 # Dossier exécutable
 B = bin/
 
-ftc: main.o explorer.o checker.o util.o
-	$(COMPIL) -o ftc main.o explorer.o checker.o util.o && $(MOV)
+ftc: main.o explorer.o checker.o util.o parser.o
+	$(COMPIL) -o ftc main.o explorer.o checker.o util.o parser.o && $(MOV)
 
-parser: parser.o
-	$(COMPIL) -o parser parser.o && $(MOV)
+parser: parser.o util.o
+	$(COMPIL) -o parser parser.o util.o && $(MOV)
 
 main.o:
 	$(COMPIL) -c $(S)main.c

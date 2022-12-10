@@ -1,6 +1,5 @@
 #include "util.h"
 
-
 long sizeInByte(char* size)
 {
 
@@ -41,23 +40,22 @@ double timeInSecond(char* size)
     switch (coef)
     {
     case 'm':
-        res = atoi(size) * m; //conversion en double
+        res = atoi(size) * min; //conversion en double
         break;
     case 'h':
         res = atoi(size);
-        res *= h;
-        res *= m;    // multiplication par le coeff
+        res *= heure;
+        res *= min;    // multiplication par le coeff
         break;
     case 'j':
         res = atoi(size);
-        res *= h;
-        res *= m;
-        res *= j;
+        res *= heure;
+        res *= min;
+        res *= jour;
         break;
     default:
         res = atoi(size);
         break;
     }
-
     return res;
 }
