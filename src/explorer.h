@@ -7,6 +7,4 @@
 #define currentDir "."
 #define parentDir ".."
 
-DIR* loadDir(const char* filename);
-
 void printDirectory(const char* path,parameter* param);

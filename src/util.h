@@ -6,7 +6,7 @@
 #define util
 
 // Coefficient de temps
-#define min 3600;
+#define min 60;
 #define heure 60;
 #define jour 24;
 
