@@ -129,7 +129,7 @@ parameter* parse(int argc, char *argv[]) {
                     //printf("- reconnu\n");
                     break;
                 default:
-                    param->sizeModifier = SMALLER;
+                    param->sizeModifier = EQUAL;
                     param->size = sizeInByte(size);
                     break;
                 }

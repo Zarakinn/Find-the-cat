@@ -52,7 +52,7 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
                 return false;
             break;
         case SMALLER:
-            if (timeSinceLastAccess >= param->timeSinceLastAcess)
+            if (timeSinceLastAccess > param->timeSinceLastAcess)
                 return false;
             break;
         default:

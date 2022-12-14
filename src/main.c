@@ -13,6 +13,5 @@ int main(int argc, char *argv[])
     strcpy(source,argv[1]);
 
     printDirectory(source,param);
-
     return EXIT_SUCCESS;
 }
