@@ -15,5 +15,6 @@ typedef struct {
     const char* regex;
     const char* patern;
     bool isDir;
+    bool carrySearch;
 } parameter;
 #endif

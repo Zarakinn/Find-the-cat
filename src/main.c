@@ -8,7 +8,11 @@ int main(int argc, char *argv[])
 
 
     parameter* param = parse(argc,argv);
-
+    if (!param->carrySearch)
+    {
+        free(param);
+        return EXIT_FAILURE;
+    }
     char source[64];
     strcpy(source,argv[1]);
 
