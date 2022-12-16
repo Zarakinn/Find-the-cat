@@ -8,8 +8,17 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
     {
         return false;
     }
+
+    if (param->isDir)
+    {
+        if (!S_ISDIR(statBuffer.st_mode))
+        {
+            return false;
+        } 
+    }
+
     //printf("Taille du fichier = %ld\n",(long)statBuffer.st_size);
-    if (param->size != NULL && statBuffer.st_size < param->size)
+    if (param->size != NULL)
     {
         switch (param->sizeModifier)
         {
@@ -18,11 +27,11 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
                 return false;
             break;
         case GREATER:
-            if (statBuffer.st_size < param->size)
+            if (statBuffer.st_size <= param->size)
                 return false;
             break;
         case SMALLER:
-            if (statBuffer.st_size > param->size)
+            if (statBuffer.st_size >= param->size)
                 return false;
             break;
         default:
@@ -30,13 +39,12 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
             break;
         }
 
-        return false;
     }
     if (param->timeSinceLastAcess != 0)
     {
         time_t t = time(NULL); // A déplacer car tout le temps le même
 
-        printf("Date dernier accès : %s\n",ctime(&statBuffer.st_atime));
+        //printf("Date dernier accès : %s\n",ctime(&statBuffer.st_atime));
         //printf("Date actuelle : %s\n", ctime(&t));
 
         double timeSinceLastAccess = (double)difftime(t,statBuffer.st_atime);
@@ -49,11 +57,11 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
                 return false;
             break;
         case GREATER:
-            if (timeSinceLastAccess < param->timeSinceLastAcess)
+            if (timeSinceLastAccess <= param->timeSinceLastAcess)
                 return false;
             break;
         case SMALLER:
-            if (timeSinceLastAccess > param->timeSinceLastAcess)
+            if (timeSinceLastAccess >= param->timeSinceLastAcess)
                 return false;
             break;
         default:

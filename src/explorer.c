@@ -1,21 +1,15 @@
 #include "explorer.h"
 #include "checker.h"
 
-DIR* loadDir(const char* filename){
-    DIR* dir = opendir(filename);
-
-    if (dir == NULL)
-    {
-        //handle Error    
-    }
-
-    return dir;
-}
 
 void printDirectory(const char* path,parameter* param)
 {
-
-    DIR* dir = loadDir(path);
+    DIR* dir = opendir(path);
+    if (dir == NULL)
+    {
+        //printf("Failure, could not open Dir : %s\n", path);
+        return;
+    }
 
     struct dirent* file;
     struct stat statBuffer;

@@ -199,10 +199,7 @@ int main(int argc, char *argv[]) {
     for(int i = 1; i < argc; i++){
         char* val = argv[i];
         if(argv[i][0]=='-'){ // on a reonnu un paramètre
-            if(strcmp(argv[i],"-name")==0 && !argname){
-                printf("ok, on est là : %s\n",argv[1]);
-            }
-            if(strcmp(argv[i],"-date")==0 && !argdate){
+            if(strcmp(argv[i],"-name")==0){
                 printf("ok, on est là : %s\n",argv[i]);
                 if (i+1 <= argc ){
                     printf("%s\n",argv[i+1]);
