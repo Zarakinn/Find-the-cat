@@ -10,20 +10,22 @@ S = src/
 O = obj/
 # Dossier exécutable
 B = bin/
+# Dossier Lib
+L = lib/
 
-ftc: main.o explorer.o checker.o util.o parser.o
-	$(COMPIL) -o ftc main.o explorer.o checker.o util.o parser.o && $(MOV)
+ftc: main.o explorer.o checker.o util.o parser.o MegaMimes.o
+	$(COMPIL) -o ftc main.o explorer.o checker.o util.o parser.o MegaMimes.o && $(MOV)
 
 parser: parser.o util.o
 	$(COMPIL) -o parser parser.o util.o && $(MOV)
 
 main.o:
-	$(COMPIL) -c $(S)main.c
+	$(COMPIL) -c $(S)main.c 
 
 parser.o:
 	$(COMPIL) -c $(S)parser.c
 
-explorer.o: checker.o
+explorer.o: checker.o 
 	$(COMPIL) -c $(S)explorer.c 
 
 checker.o:
@@ -31,6 +33,9 @@ checker.o:
 
 util.o:
 	$(COMPIL) -c $(S)util.c
+
+MegaMimes.o:
+	$(COMPIL) -c $(L)MegaMimes.c
 	
 # Nettoyage
 clean:

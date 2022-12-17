@@ -7,6 +7,7 @@ parameter* parse(int argc, char *argv[]) {
 
     parameter* param = (parameter*)malloc(sizeof(parameter));
     param->carrySearch = true;
+    param->isDir = false;
 
     for(int i = 2; i < argc; i+=1){
         //printf("I : %i\n",i);
@@ -174,7 +175,13 @@ parameter* parse(int argc, char *argv[]) {
                 i++;
             }
             else if(strcmp(argv[i],"-mime")==0){
-                printf("Mime : %s\n",argv[i+1]);
+                if ( i + 1 >= argc)
+                {
+                    param->carrySearch = false;
+                    printf("Erreur, pas d'argument après le paramètre -mime\n");
+                    return param;
+                }
+                // TODO - vérifier que le paramèter est dans la banque de donnée de type mime
                 param->type = argv[i+1];
                 i++;
             }

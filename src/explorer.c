@@ -32,11 +32,11 @@ void printDirectory(const char* path,parameter* param)
             printDirectory(filename, param);
         }
 
-        if (!matchCondition(file,statBuffer,param))
+        if (!matchCondition(file,filename, statBuffer,param))
             continue;
+        
         printf("%s\n", filename);
     }
-
     closedir(dir);
 }
 

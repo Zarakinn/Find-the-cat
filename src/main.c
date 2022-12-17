@@ -5,12 +5,11 @@
 
 int main(int argc, char *argv[])
 {
-
-
     parameter* param = parse(argc,argv);
     if (!param->carrySearch)
     {
         free(param);
+        //printf("Exit\n");
         return EXIT_FAILURE;
     }
     char source[64];

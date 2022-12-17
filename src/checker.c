@@ -1,15 +1,31 @@
 #include "checker.h"
 
-bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* param)
-{
+bool matchCondition(struct dirent* file, const char* filename, struct stat statBuffer, parameter* param)
+{   
+    
+    if (param->type != NULL)
+    {
+        const char* mimetype = getMegaMimeType(filename);
+        if (mimetype != NULL)
+        {
 
+            if (strstr(mimetype,param->type) == NULL)
+            {
+                NULL;
+            }
+        }
+        else 
+        {
+            return false;
+        }
+    }
     //printf("%s\n",file->d_name);
     if (param->name!= NULL && (strstr(file->d_name,param->name) == NULL))
     {
         return false;
     }
 
-    if (param->isDir)
+    if (param->isDir != false && param->isDir)
     {
         if (!S_ISDIR(statBuffer.st_mode))
         {
@@ -69,6 +85,5 @@ bool matchCondition(struct dirent* file, struct stat statBuffer, parameter* para
             break;
         }
     }
-
     return true;
 }
