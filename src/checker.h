@@ -3,6 +3,7 @@
 #include <stdlib.h> 
 #include <sys/stat.h>
 #include <time.h>
+#include <regex.h>
 #include "parameterStruct.h"
 #include "../lib/MegaMimes.h"
 

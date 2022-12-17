@@ -22,7 +22,11 @@ bool matchCondition(struct dirent* file, const char* filename, struct stat statB
     //printf("%s\n",file->d_name);
     if (param->name!= NULL && (strstr(file->d_name,param->name) == NULL))
     {
-        return false;
+        // TODO - error handling
+        regex_t regex;
+        regcomp(&regex,param->name,REG_EXTENDED | REG_NOSUB);
+        if (regexec(&regex,file->d_name, 0, NULL, 0) != 0)
+            return false;
     }
 
     if (param->isDir != false && param->isDir)
