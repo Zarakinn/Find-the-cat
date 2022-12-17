@@ -11,7 +11,7 @@ bool matchCondition(struct dirent* file, const char* filename, struct stat statB
 
             if (strstr(mimetype,param->type) == NULL)
             {
-                NULL;
+                return false;
             }
         }
         else 
