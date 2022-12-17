@@ -28,7 +28,7 @@ parser.o:
 explorer.o: checker.o 
 	$(COMPIL) -c $(S)explorer.c 
 
-checker.o:
+checker.o: $(L)MegaMimes.h
 	$(COMPIL) -c $(S)checker.c
 
 util.o:
