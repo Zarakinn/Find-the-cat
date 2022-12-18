@@ -205,7 +205,8 @@ parameter* parse(int argc, char *argv[]) {
             }
             else if(strcmp(argv[i],"-dir")==0){
                 //printf("Dir : %s\n",argv[i+1]);
-                param->isDir = argv[i+1];
+                param->isDir = true;
+                param->name = argv[i+1];
                 i++;
             }
             else 
