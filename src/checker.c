@@ -19,6 +19,23 @@ bool matchCondition(struct dirent* file, const char* filename, struct stat statB
             return false;
         }
     }
+
+    if (param->patern != NULL)
+    {
+        FILE *file = fopen(filename, "r");
+        bool found = false;
+
+        char line[512];
+        while (fgets(line, sizeof(line), file)) {
+            if (strstr(line, param->patern)) {
+                found = true;
+            }
+        } 
+        fclose(file);
+        if (!found)
+            return false;
+    }
+
     //printf("%s\n",file->d_name);
     if (param->name!= NULL && (strstr(file->d_name,param->name) == NULL))
     {
