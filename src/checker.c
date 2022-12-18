@@ -27,6 +27,7 @@ bool matchCondition(struct dirent* file, const char* filename, struct stat statB
 
         char line[512];
         while (fgets(line, sizeof(line), file)) {
+            
             if (strstr(line, param->patern)) {
                 found = true;
             }
@@ -41,7 +42,10 @@ bool matchCondition(struct dirent* file, const char* filename, struct stat statB
     {
         // TODO - error handling
         regex_t regex;
-        regcomp(&regex,param->name,REG_EXTENDED | REG_NOSUB);
+        
+        regcomp(&regex,param->name,REG_EXTENDED | REG_NOSUB );       
+
+
         if (regexec(&regex,file->d_name, 0, NULL, 0) != 0)
             regfree(&regex);
             return false;
