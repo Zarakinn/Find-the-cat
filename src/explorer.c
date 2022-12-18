@@ -2,6 +2,36 @@
 #include "checker.h"
 
 
+void printFirst(const char* path, parameter* param)
+{
+
+    DIR* dir = opendir(path);
+    if (dir == NULL)
+    {
+        return;
+    }
+
+    struct dirent* file;
+    struct stat statBuffer;
+
+    while ((file = readdir(dir)) != NULL)
+    {
+        if (strcmp(file->d_name,currentDir))
+        {
+            continue;
+        }
+        
+        stat(path,&statBuffer);
+
+        if (matchCondition(file,path,statBuffer,param))
+            printf("%s\n",path);
+    }
+    closedir(dir);
+    printDirectory(path,param);
+}
+
+
+
 void printDirectory(const char* path,parameter* param)
 {
     DIR* dir = opendir(path);

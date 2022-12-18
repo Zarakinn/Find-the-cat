@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
         source[strlen(source)-1] = '\0';
     }
 
-    printDirectory(source,param);
+    printFirst(source,param);
+
     return EXIT_SUCCESS;
 }

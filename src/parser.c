@@ -38,7 +38,6 @@ parameter* parse(int argc, char *argv[]) {
                     }
                 }
                 param->carrySearch = false;
-                free(flag);
                 return param;
             }
             else if(strcmp(argv[i],"-name")==0){
