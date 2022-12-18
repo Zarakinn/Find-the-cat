@@ -15,6 +15,11 @@ int main(int argc, char *argv[])
     char source[64];
     strcpy(source,argv[1]);
 
+    if (source[strlen(source)-1] == '/')
+    {
+        source[strlen(source)-1] = '\0';
+    }
+
     printDirectory(source,param);
     return EXIT_SUCCESS;
 }

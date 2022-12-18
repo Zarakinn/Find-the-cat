@@ -17,14 +17,28 @@ parameter* parse(int argc, char *argv[]) {
             {
                 //printf("La valeur du flag -test est %s\n",argv[i+1]);
 
+                if  (argc < i +1){ fprintf(stderr,"Erreur, pas assez d'arguments\n"); param->carrySearch = false; return param;}
+
+                char* flag = argv[i+1];
                 if (argc < i+2)
                 {
-                    fprintf(stderr, "Erreur, pas assez d'arguement\n");
+                    fprintf(stderr, "Le flag %s n'est pas correct\n",flag);
                 }
                 else {
-                    printf("La valeur du flag %s est %s\n",argv[i+1],argv[i+2]);
+                    bool valid = strcmp(flag,"-name") == 0 || strcmp(flag,"-size") == 0 || strcmp(flag,"-ctc") == 0 || strcmp(flag,"-date") == 0 
+                                || strcmp(flag,"-mime") == 0 || strcmp(flag,"-dir") == 0 || strcmp(flag,"-perm") == 0 || strcmp(flag,"-threads") == 0;
+
+                    if (valid)
+                    {
+                        printf("La valeur du flag %s est %s\n",argv[i+1],argv[i+2]);
+                    }
+                    else 
+                    {
+                        printf("Le flag %s n'est pas correct\n",flag);
+                    }
                 }
                 param->carrySearch = false;
+                free(flag);
                 return param;
             }
             else if(strcmp(argv[i],"-name")==0){
@@ -198,7 +212,7 @@ parameter* parse(int argc, char *argv[]) {
             else 
             {   
                 param->carrySearch = false;
-                fprintf(stderr,"Erreur, paramètre : '%s' non reconnu\n",argv[i]);
+                fprintf(stderr,"Le flag %s, n'est pas correct\n",argv[i]);
                 return param;
             }
         }
