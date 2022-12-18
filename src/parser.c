@@ -19,7 +19,7 @@ parameter* parse(int argc, char *argv[]) {
 
                 if (argc < i+2)
                 {
-                    printf("Erreur, pas assez d'arguement\n");
+                    fprintf(stderr, "Erreur, pas assez d'arguement\n");
                 }
                 else {
                     printf("La valeur du flag %s est %s\n",argv[i+1],argv[i+2]);
@@ -31,7 +31,7 @@ parameter* parse(int argc, char *argv[]) {
                 if ( i + 1 >= argc)
                 {
                     param->carrySearch = false;
-                    printf("Erreur, pas d'argument après le paramètre -name\n");
+                    fprintf(stderr,"Erreur, pas d'argument après le paramètre -name\n");
                     return param;
                 }
                 //printf("Param name : %s\n",argv[i+1]);
@@ -43,7 +43,7 @@ parameter* parse(int argc, char *argv[]) {
                 if ( i + 1 >= argc)
                 {
                     param->carrySearch = false;
-                    printf("Erreur, pas d'argument après le paramètre -date\n");
+                    fprintf(stderr,"Erreur, pas d'argument après le paramètre -date\n");
                     return param;
                 }
                 char* time = argv[i+1];
@@ -59,7 +59,7 @@ parameter* parse(int argc, char *argv[]) {
                 }
                 if (invalid & !isdigit(multiple))
                 {
-                    printf("Erreur, multiple de date %c non reconnu.\n",multiple);
+                    fprintf(stderr,"Erreur, multiple de date %c non reconnu.\n",multiple);
                     param->carrySearch = false;
                     continue; // on ne s'arrête pas, on continue au prochain paramètre
                 }
@@ -97,7 +97,7 @@ parameter* parse(int argc, char *argv[]) {
                     {
                         param->timeSinceLastAcess = 0;
                         param->carrySearch = false;
-                        printf("Erreur, la date ne doit être composé que de chiffre, hormis l'opérateur du début et un multiple à la fin\n");
+                        fprintf(stderr,"Erreur, la date ne doit être composé que de chiffre, hormis l'opérateur du début et un multiple à la fin\n");
                         break;
                     }
                 }
@@ -108,7 +108,7 @@ parameter* parse(int argc, char *argv[]) {
                 if ( i + 1 >= argc)
                 {
                     param->carrySearch = false;
-                    printf("Erreur, pas d'argument après le paramètre -size\n");
+                    fprintf(stderr,"Erreur, pas d'argument après le paramètre -size\n");
                     return param;
                 }
                 char* size = argv[i+1];                
@@ -129,7 +129,7 @@ parameter* parse(int argc, char *argv[]) {
                     {
                         continue;
                     }
-                    printf("Erreur, multiple de  taille %c non reconnu.\n",multiple);
+                    fprintf(stderr,"Erreur, multiple de  taille %c non reconnu.\n",multiple);
                     param->carrySearch = false;
                     continue; // on ne s'arrête pas, on continue au prochain paramètre
                 }
@@ -168,7 +168,7 @@ parameter* parse(int argc, char *argv[]) {
                     {
                         param->size = NULL;
                         param->carrySearch = false;
-                        printf("Erreur, la taille ne doit être composé que de chiffre, hormis l'opérateur du début et un multiple à la fin\n");
+                        fprintf(stderr,"Erreur, la taille ne doit être composé que de chiffre, hormis l'opérateur du début et un multiple à la fin\n");
                     }
                 }
                 //printf("Taille reconnu : %lu\n",param->size);
@@ -178,7 +178,7 @@ parameter* parse(int argc, char *argv[]) {
                 if ( i + 1 >= argc)
                 {
                     param->carrySearch = false;
-                    printf("Erreur, pas d'argument après le paramètre -mime\n");
+                    fprintf(stderr,"Erreur, pas d'argument après le paramètre -mime\n");
                     return param;
                 }
                 // TODO - vérifier que le paramèter est dans la banque de donnée de type mime
@@ -186,23 +186,23 @@ parameter* parse(int argc, char *argv[]) {
                 i++;
             }
             else if(strcmp(argv[i],"-ctc")==0){
-                printf("ctc : %s\n",argv[i+1]);
+                //printf("ctc : %s\n",argv[i+1]);
                 param->patern = argv[i+1];
                 i++;
             }
             else if(strcmp(argv[i],"-dir")==0){
-                printf("Dir : %s\n",argv[i+1]);
+                //printf("Dir : %s\n",argv[i+1]);
                 param->isDir = argv[i+1];
                 i++;
             }
             else 
             {   
                 param->carrySearch = false;
-                printf("Erreur, paramètre : '%s' non reconnu\n",argv[i]);
+                fprintf(stderr,"Erreur, paramètre : '%s' non reconnu\n",argv[i]);
                 return param;
             }
         }
-        else {param->carrySearch = false; printf("Erreur, paramètre attendu\n");}
+        else {param->carrySearch = false; fprintf(stderr,"Erreur, paramètre attendu\n");}
     }
     return param;
 }

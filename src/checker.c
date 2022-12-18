@@ -26,7 +26,9 @@ bool matchCondition(struct dirent* file, const char* filename, struct stat statB
         regex_t regex;
         regcomp(&regex,param->name,REG_EXTENDED | REG_NOSUB);
         if (regexec(&regex,file->d_name, 0, NULL, 0) != 0)
+            regfree(&regex);
             return false;
+        regfree(&regex);
     }
 
     if (param->isDir != false && param->isDir)
@@ -55,7 +57,7 @@ bool matchCondition(struct dirent* file, const char* filename, struct stat statB
                 return false;
             break;
         default:
-            printf("Erreur, aucun modifier renseigné pour la taille\n");
+            fprintf(stderr,"Erreur, aucun modifier renseigné pour la taille\n");
             break;
         }
 
